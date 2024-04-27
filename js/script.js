@@ -101,6 +101,7 @@ function handleKeyDown(e) {
     default:
       break;
   }
+  isCompleted = endOfGame();
   renderPuzzle();
   endOfGame();
 }
@@ -197,13 +198,10 @@ function getItemByPosition(pos) {
 function endOfGame() {
   for (let i = 0; i < puzzle.length; i++) {
     if (puzzle[i].position !== i + 1) {
-      isCompleted = false;
-      break;
+      return false; // If any piece is not in its correct position, the game is not completed
     }
-    isCompleted = true;
   }
 
-  if (isCompleted) {
-    alert("Parabéns! Você conseguiu montar o quebra-cabeça!!!");
-  }
+  alert("Parabéns! Você conseguiu montar o quebra-cabeça!!!");
+  return true;
 }
